@@ -1,0 +1,14 @@
+language: bash
+services: docker
+
+install:
+  - git clone https://github.com/perigee/docker_golang_nodejs.git
+
+before_script:
+  - cd docker_golang_nodejs
+
+script:
+  - docker build -t "perigee/golang_nodejs" .
+
+after_script:
+  - docker images
