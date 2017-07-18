@@ -1,2 +1,6 @@
-# docker_golang_nodejs
-A golang nodejs dev docker image
+# Docker-image-golang
+
+A golang dev docker image contains:
+
+- golang
+- glide
