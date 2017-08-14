@@ -1,26 +1,21 @@
-FROM golang:1.8.3-alpine3.5
-
+FROM golang:1.8.3-jessie
 
 ENV PROTOC_VERSION 3.3.0
+ENV PATH $PATH:/usr/local/protoc/bin
 
-RUN adduser -D -u 1000 -s bash golang
-RUN apk --update --no-cache add git curl build-base autoconf automake libtool
-
-WORKDIR /tmp/protoc/protobuf-$PROTOC_VERSION
-RUN curl -sL https://github.com/google/protobuf/archive/v$PROTOC_VERSION.tar.gz | tar zxvf - -C /tmp/protoc
-
-RUN ./autogen.sh && \
-  ./configure --prefix=/usr && \
-  make -j 3 && \
-  make check && \
-  make install
-
-WORKDIR $GOPATH
-RUN rm -rf /tmp/protoc
+RUN useradd -u 1000 -U golang
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    git \
+    curl\
+    unzip \
+    &&  curl -o tmp.zip -L https://github.com/google/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip \
+    && mkdir -p /usr/local/protoc \
+    && unzip tmp.zip -d /usr/local/protoc \
+    && rm -rf tmp.zip
 
 RUN go get google.golang.org/grpc \
-    && go get -u github.com/golang/protobuf/protoc-gen-go
-
-RUN curl https://glide.sh/get | sh
+    && go get -u github.com/golang/protobuf/protoc-gen-go \
+    && curl https://glide.sh/get | sh \
+    && chown -R golang:golang $GOPATH
 
 USER golang
