@@ -3,11 +3,12 @@ FROM golang:1.9.2-alpine3.6
 ENV PROTOC_VERSION 3.5.0
 ENV PATH $PATH:/usr/local/protoc/bin
 
-RUN useradd -u 1000 -U golang
-RUN apt-get update && apt-get install --no-install-recommends -y \
+#RUN useradd -u 1000 -U golang
+RUN apk add --no-cache \
     git \
     curl\
     unzip \
+    make \
     &&  curl -o tmp.zip -L https://github.com/google/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip \
     && mkdir -p /usr/local/protoc \
     && unzip tmp.zip -d /usr/local/protoc \
@@ -18,4 +19,4 @@ RUN go get google.golang.org/grpc \
     && curl https://glide.sh/get | sh \
     && chown -R golang:golang $GOPATH
 
-USER golang
+#USER golang
