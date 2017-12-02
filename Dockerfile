@@ -1,6 +1,6 @@
-FROM golang:1.8.3-jessie
+FROM golang:1.9.2-alpine3.6
 
-ENV PROTOC_VERSION 3.3.0
+ENV PROTOC_VERSION 3.5.0
 ENV PATH $PATH:/usr/local/protoc/bin
 
 RUN useradd -u 1000 -U golang
