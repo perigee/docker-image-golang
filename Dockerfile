@@ -9,6 +9,7 @@ RUN apk add --no-cache \
     curl\
     unzip \
     make \
+    ca-certificates \
     &&  curl -o tmp.zip -L https://github.com/google/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip \
     && mkdir -p /usr/local/protoc \
     && unzip tmp.zip -d /usr/local/protoc \
