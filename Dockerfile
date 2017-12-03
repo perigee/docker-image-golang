@@ -3,7 +3,7 @@ FROM golang:1.9.2-alpine3.6
 ENV PROTOC_VERSION 3.5.0
 ENV PATH $PATH:/usr/local/protoc/bin
 
-#RUN useradd -u 1000 -U golang
+RUN adduser -D -u 1000 golang
 RUN apk add --no-cache \
     git \
     curl\
@@ -19,4 +19,4 @@ RUN go get google.golang.org/grpc \
     && curl https://glide.sh/get | sh \
     && chown -R golang:golang $GOPATH
 
-#USER golang
+USER golang
