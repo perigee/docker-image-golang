@@ -3,6 +3,7 @@
 A golang dev docker image contains:
 
 - golang
-- glide
+- dep
+- gRPC
 
-Default `GOPATH` inside image is `/go`
+Default `GOPATH` inside image is `/go`, workspace under `/go/src/workspace`
