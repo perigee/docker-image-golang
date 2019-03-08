@@ -17,6 +17,7 @@ RUN apk add --no-cache \
 
 RUN go get google.golang.org/grpc \
     && go get -u github.com/golang/protobuf/protoc-gen-go \
+    && curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh \
     #&& curl https://glide.sh/get | sh \
     && chown -R golang:golang $GOPATH
 
