@@ -1,6 +1,6 @@
-FROM golang:1.12-alpine3.9
+FROM golang:1.12.6-alpine3.10
 
-ENV PROTOC_VERSION 3.7.0
+ENV PROTOC_VERSION 3.8.0
 ENV PATH $PATH:/usr/local/protoc/bin
 
 RUN adduser -D -u 1000 golang
