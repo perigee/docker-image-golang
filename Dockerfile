@@ -1,7 +1,7 @@
 FROM golang:1.12.9-alpine3.10
 
 ENV PROTOC_VERSION 3.9.1
-ENV PATH $PATH:/usr/local/protoc/bin
+
 
 RUN adduser -D -u 1000 golang
 RUN apk add --no-cache \
@@ -11,8 +11,8 @@ RUN apk add --no-cache \
     make \
     ca-certificates \
     &&  curl -o tmp.zip -L https://github.com/google/protobuf/releases/download/v$PROTOC_VERSION/protoc-$PROTOC_VERSION-linux-x86_64.zip \
-    && mkdir -p /usr/local/protoc \
-    && unzip tmp.zip -d /usr/local/protoc \
+    && unzip -o tmp.zip -d /usr/local bin/protoc \
+    && unzip -o tmp.zip -d /usr/local include/* \
     && rm -rf tmp.zip
 
 RUN go get google.golang.org/grpc \
