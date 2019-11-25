@@ -1,4 +1,4 @@
-FROM golang:1.12.9-alpine3.10
+FROM golang:1.13.4-alpine3.10
 ENV GIT_TAG v1.3.2
 ENV PATH $PATH:/go/bin
 
