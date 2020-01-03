@@ -1,6 +1,7 @@
-FROM golang:1.13.4-alpine3.10
+FROM golang:1.13.5-alpine3.10
 ENV GIT_TAG v1.3.2
 ENV PATH $PATH:/go/bin
+ENV CGO_ENABLED 0
 
 RUN adduser -D -u 1000 golang
 RUN apk add --no-cache \
