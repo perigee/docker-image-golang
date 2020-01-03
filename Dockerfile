@@ -7,6 +7,7 @@ RUN apk add --no-cache \
     git \
     curl\
     unzip \
+    zip \
     make \
     ca-certificates \
     protobuf
