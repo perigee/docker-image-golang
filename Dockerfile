@@ -1,5 +1,5 @@
-FROM golang:1.13.5-alpine3.10
-ENV GIT_TAG v1.3.2
+FROM golang:1.13.8-alpine3.10
+ENV PROTOBUF_GIT_TAG v1.3.3
 ENV PATH $PATH:/go/bin
 ENV CGO_ENABLED 0
 
@@ -15,7 +15,7 @@ RUN apk add --no-cache \
 
 RUN go get google.golang.org/grpc \
     && go get -d -u github.com/golang/protobuf/protoc-gen-go \
-    && git -C /go/src/github.com/golang/protobuf checkout $GIT_TAG \
+    && git -C /go/src/github.com/golang/protobuf checkout $PROTOBUF_GIT_TAG \
     && go install github.com/golang/protobuf/protoc-gen-go \
     && chown -R golang:golang /go
 
